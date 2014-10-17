@@ -1,0 +1,1 @@
+nodemon without any args
