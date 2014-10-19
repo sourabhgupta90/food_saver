@@ -1,0 +1,5 @@
+
+I have installed express, express-generator as module in app; they can be installed globally using -g option.
+npm install express
+npm install express-generator
+express // to create directories
