@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var http = require("http");
+
 var app = express();
 
 // view engine setup
@@ -56,5 +58,11 @@ app.use(function(err, req, res, next) {
     });
 });
 
+
+http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write("Hello World");
+  response.end();
+}).listen(8888);
 
 module.exports = app;
