@@ -1,0 +1,6 @@
+
+I have installed express, express-generator as module in app; they can be installed globally using -g option.
+npm install express
+npm install express-generator
+express // to create files,directories to start with; like routes, bin etc... IT DOESN'T INSTALL DEPENDENCIES IN PACKAGE.JSON
+npm install // it reads package.json and installs all dependencies
