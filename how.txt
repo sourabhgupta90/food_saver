@@ -4,3 +4,6 @@ npm install express
 npm install express-generator
 express // to create files,directories to start with; like routes, bin etc... IT DOESN'T INSTALL DEPENDENCIES IN PACKAGE.JSON
 npm install // it reads package.json and installs all dependencies
+npm info socket.io version // if you don't know the version of package and want to put in package.json file
+// added nodejs.nbm plugin to netbeans for nodejs support
+// removed jade and added ejs as it looks fine as template

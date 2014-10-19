@@ -11,10 +11,12 @@ var users = require('./routes/users');
 var http = require("http");
 
 var app = express();
+var io = require('socket.io');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -59,10 +61,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("Hello World");
-  response.end();
-}).listen(8888);
-
+server = http.createServer( app );
+io.listen( server );
+server.listen( 8888 );
+console.log('Listening on 8888');
 module.exports = app;
