@@ -7,14 +7,15 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var angular = require('./routes/ang');
 
-var http = require("http");
+//var http = require("http");
 
 var app = express();
-var io = require('socket.io');
+//var io = require('socket.io');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'ejs');
 
 
@@ -28,7 +29,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/angular', angular);
 
+/*
+app.use('/ang', function(req, res, next) {
+    res.sendFile( 'views/pages/ang.html' );
+});
+*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -60,9 +67,11 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var port = process.env.PORT || 8888;
 
-server = http.createServer( app );
-io.listen( server );
-server.listen( 8888 );
-console.log('Listening on 8888');
+//server = http.createServer( app );
+//io.listen( server );
+//server.listen( 8888 );
+app.listen( port );
+console.log('Hi.. Listening on:' + port );
 module.exports = app;
