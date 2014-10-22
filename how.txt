@@ -7,3 +7,42 @@ npm install // it reads package.json and installs all dependencies
 npm info socket.io version // if you don't know the version of package and want to put in package.json file
 // added nodejs.nbm plugin to netbeans for nodejs support
 // removed jade and added ejs as it looks fine as template
+/*
+* when i first used mean init, then experss, it replaced package.json file cerated by mean. I guess we need to be careful while
+* using express after mean.
+* but if we use express init, then use mean init : it would be very bad it may over write many imp files of express
+/
+
+******* suggested directory structure for node + angular ******
+// modify this structure accordingly
+    - app
+        ----- models/
+        ---------- nerd.js <!-- the nerd model to handle CRUD -->
+    ----- routes.js
+    - config
+        ----- db.js 
+    - node_modules <!-- created by npm install -->
+    - public <!-- all frontend and angular stuff -->
+    ----- css
+    ----- js
+    ---------- controllers <!-- angular controllers -->
+    -------------------- MainCtrl.js
+    -------------------- NerdCtrl.js
+    ---------- services <!-- angular services -->
+   -------------------- NerdService.js
+    ---------- app.js <!-- angular application -->
+    ---------- appRoutes.js <!-- angular routes -->
+    ----- img
+    ----- libs <!-- created by bower install -->
+    ----- views 
+    ---------- home.html
+    ---------- nerd.html
+    ---------- geek.html
+    ---------- index.html
+    - .bowerrc <!-- tells bower where to put files (public/libs) -->
+    - bower.json <!-- tells bower which files we need -->
+    - package.json <!-- tells npm which packages we need -->
+    - server.js <!-- set up our node application -->
+
+
+***** end directory structure for node+angular ******
