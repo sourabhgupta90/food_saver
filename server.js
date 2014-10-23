@@ -26,6 +26,12 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
+app.set('view engine', 'jade');
+
+app.get('/', function (req, res) {
+  res.render('index', { title: 'Hey', message: 'Hello there!'});
+})
+
 router.route('/users')
 
 	// create a bear (accessed at POST http://localhost:8080/bears)

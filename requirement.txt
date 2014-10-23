@@ -16,3 +16,5 @@ sudo mkdir -p /data/db/
 
 sudo chown `id -u` /data/db
 ps aux | grep node
+npm install jade --save
+npm install ejs
