@@ -26,11 +26,20 @@ router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
-app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!'});
-})
+
+app.get('/', function(req, res) {
+	res.render('pages/index');
+});
+
+// about page 
+app.get('/about', function(req, res) {
+	res.render('pages/about');
+});
+
+
+
 
 router.route('/users')
 
