@@ -15,12 +15,12 @@ npm info socket.io version // if you don't know the version of package and want 
 
 ******* suggested directory structure for node + angular ******
 // modify this structure accordingly
-    - app
-        ----- models/
-        ---------- nerd.js <!-- the nerd model to handle CRUD -->
-    ----- routes.js
+    - app.js
     - config
-        ----- db.js 
+    ---------- db.js 
+    ----- models/
+    ---------- nerd.js <!-- the nerd model to handle CRUD -->
+    ----- routes.js
     - node_modules <!-- created by npm install -->
     - public <!-- all frontend and angular stuff -->
     ----- css
@@ -33,12 +33,32 @@ npm info socket.io version // if you don't know the version of package and want 
     ---------- app.js <!-- angular application -->
     ---------- appRoutes.js <!-- angular routes -->
     ----- img
-    ----- libs <!-- created by bower install -->
+    ----- libs <!-- libs created by bower install -->
+    ---------- angular
+    ---------- angular-route
+    ---------- bootstrap
+    ---------- font-awesome
+    ---------- jquery
     ----- views 
-    ---------- home.html
-    ---------- nerd.html
-    ---------- geek.html
-    ---------- index.html
+    ---------- pages
+    ------------------- home.html
+    ------------------- nerd.html
+    ------------------- geek.html
+    ------------------- index.html
+    - routes <!-- routes for Node -->
+    ----- ang.js
+    ----- index.js
+    ----- users.js
+    - views <!-- views for requested routes( NOT for Angular ) -->
+    ----- pages
+    ------------------- about.ejs
+    ------------------- ang.ejs
+    ------------------- error.ejs
+    ------------------- index.ejs
+    ----- partials
+    ------------------- footer.ejs
+    ------------------- head.ejs
+    ------------------- header.ejs
     - .bowerrc <!-- tells bower where to put files (public/libs) -->
     - bower.json <!-- tells bower which files we need -->
     - package.json <!-- tells npm which packages we need -->
@@ -46,3 +66,19 @@ npm info socket.io version // if you don't know the version of package and want 
 
 
 ***** end directory structure for node+angular ******
+
+/*
+if we want to pass any variable to a function in other file, we can pass it with require statement.
+eg: if we put routes in other file,
+module.exports = function ( app ){
+    app.get( --- );
+    app.put( --- );
+    app.post( --- );
+
+    app.get('*', function(){ -- });
+}
+
+in server.js file we can load this module while passing it app using:
+require('./routes')(app);
+
+*/

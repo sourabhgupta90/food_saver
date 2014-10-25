@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 var db = require('./config/db');
+// pass db.url to mongoose.connect to connect with db
 
 /*
  * below had problem because i used routes/index instead of ./routes/index 
@@ -103,4 +104,6 @@ var port = process.env.PORT || 8888;
 //server.listen( 8888 );
 app.listen( port );
 console.log('Hi.. Listening on:' + port );
+//  module.exports exposes those variables (or functions or anything else) to other files.
+// read: http://openmymind.net/2012/2/3/Node-Require-and-Exports/
 exports = module.exports = app;
