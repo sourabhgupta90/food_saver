@@ -18,3 +18,6 @@ when we copied project from foodRedirect directory to food_saver, some files
 like .jshintrc weren't copied. so when grunt ran jshint, it complained about
 statements with require, module etc... because jshint file describes what modules
 to allow or not etc... info
+
+without .bowerrc its bower installs in public/libs, but after reading .bowerrc 
+it places accordingly

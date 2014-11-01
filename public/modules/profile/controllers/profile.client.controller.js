@@ -5,12 +5,12 @@ angular.module('profile').controller('ProfileController', ['$scope', '$statePara
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
-			var article = new Articles({
+			var article = new Profile({
 				title: this.title,
 				content: this.content
 			});
 			article.$save(function(response) {
-				$location.path('articles/' + response._id);
+				$location.path('profile/' + response._id);
 
 				$scope.title = '';
 				$scope.content = '';
@@ -30,7 +30,7 @@ angular.module('profile').controller('ProfileController', ['$scope', '$statePara
 				}
 			} else {
 				$scope.article.$remove(function() {
-					$location.path('articles');
+					$location.path('profile');
 				});
 			}
 		};
@@ -39,18 +39,18 @@ angular.module('profile').controller('ProfileController', ['$scope', '$statePara
 			var article = $scope.article;
 
 			article.$update(function() {
-				$location.path('articles/' + article._id);
+				$location.path('profile/' + article._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
 		$scope.find = function() {
-			$scope.articles = Articles.query();
+			$scope.articles = Profile.query();
 		};
 
 		$scope.findOne = function() {
-			$scope.article = Articles.get({
+			$scope.article = Profile.get({
 				articleId: $stateParams.articleId
 			});
 		};
