@@ -1,0 +1,14 @@
+files that get autoloaded:
+in app/ models, routes will be auto loaded, config/ strategies by passport 
+, public/modules, 
+
+to run node in different env
+$ NODE_ENV={The Environment Name} grunt
+eg: NODE_ENV=development grunt
+
+config.assets field in the environments configuration files option allows you to 
+organize all your assets inclusion in a single place.
+
+
+ to exclude searching from directory:
+grep -r --exclude-dir=node_modules gruntfile.js *
