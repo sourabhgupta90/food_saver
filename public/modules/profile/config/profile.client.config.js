@@ -5,6 +5,7 @@ angular.module('profile').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
                 //Menus.addMenuItem(menuId, menuItemTitle, menuItemURL, [menuItemUIRoute], [isPublic], [roles]);
+                //Menus.addMenuItem('topbar', 'Articles', 'articles', 'dropdown', '/articles(/create)?');
 		Menus.addMenuItem('topbar', 'Profile', 'profile', '/profile');
                 /*
 		Menus.addSubMenuItem('topbar', 'articles', 'List Articles', 'articles');

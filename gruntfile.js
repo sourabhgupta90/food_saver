@@ -8,11 +8,11 @@ module.exports = function(grunt) {
 	// Unified Watch Object
 	var watchFiles = {
 		serverViews: ['app/views/**/*.*'], 
-		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
+		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js' , 'app/**/*.js' ], 
 		clientViews: ['public/modules/**/views/**/*.html'],
 		clientJS: ['public/js/*.js', 'public/modules/**/*.js'],
-		clientCSS: ['public/modules/**/*.css'],
-		mochaTests: ['app/tests/**/*.js']
+		clientCSS: ['public/modules/**/*.css']
+		//mochaTests: ['app/tests/**/*.js']
 	};
 
 	// Project Configuration
@@ -175,6 +175,7 @@ module.exports = function(grunt) {
 	// Default task(s).
         // grunt.task.registerTask(taskName, taskList); this taskname was used above
         
+        // The default task is the task that runs when you type 'grunt' in your command-line
 	grunt.registerTask('default', ['lint', 'concurrent:default']);
 
 	// Debug task.
