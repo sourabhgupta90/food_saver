@@ -39,3 +39,5 @@ was running on localhost:3000 :)
 
 while creating app with twitter it wasn't accepting url localhost:3000 
 but accepted http://127.0.0.1:3000/
+
+wrongly put email-id instead of client id, which was causing problems
