@@ -37,4 +37,5 @@ URLs is not allowed by the App's settings. It must match the Website URL or Canv
 problem was that in advanced tab, it was taking wrong url as localhost:8080 but app
 was running on localhost:3000 :)
 
-
+while creating app with twitter it wasn't accepting url localhost:3000 
+but accepted http://127.0.0.1:3000/
