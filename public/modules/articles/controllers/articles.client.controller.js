@@ -1,5 +1,5 @@
 'use strict';
-
+// here Authenticaiton and Articles are services
 angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
 	function($scope, $stateParams, $location, Authentication, Articles) {
 		$scope.authentication = Authentication;
@@ -9,6 +9,8 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 				title: this.title,
 				content: this.content
 			});
+                        // don't know meaning of $save funciton where does this
+                        // $funciton come from
 			article.$save(function(response) {
 				$location.path('articles/' + response._id);
 

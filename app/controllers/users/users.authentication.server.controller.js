@@ -13,6 +13,7 @@ var _ = require('lodash'),
  * Signup
  */
 exports.signup = function(req, res) {
+    // create new user and return it
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
 
@@ -31,7 +32,7 @@ exports.signup = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			// Remove sensitive data before login
+			// Remove sensitive data before login, what & why??
 			user.password = undefined;
 			user.salt = undefined;
 
@@ -39,7 +40,7 @@ exports.signup = function(req, res) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
-					res.json(user);
+					res.json(user); // return json user object
 				}
 			});
 		}
@@ -66,7 +67,7 @@ exports.signin = function(req, res, next) {
 				}
 			});
 		}
-	})(req, res, next);
+	})(req, res, next); // auto call passport.authenticate()
 };
 
 /**
@@ -81,6 +82,7 @@ exports.signout = function(req, res) {
  * OAuth callback
  */
 exports.oauthCallback = function(strategy) {
+    console.log("facebook callback");
 	return function(req, res, next) {
 		passport.authenticate(strategy, function(err, user, redirectURL) {
 			if (err || !user) {
@@ -93,7 +95,7 @@ exports.oauthCallback = function(strategy) {
 
 				return res.redirect(redirectURL || '/');
 			});
-		})(req, res, next);
+		})(req, res, next); // auto call passport.authenticate with input strategy
 	};
 };
 

@@ -6,6 +6,13 @@ to run node in different env
 $ NODE_ENV={The Environment Name} grunt
 eg: NODE_ENV=development grunt
 
+local directory structure for working
+/apps/ contains link current which points to /apps/foodRedirect/food_saver 
+or whereever you want to point it to.
+this current is pointing to dpk22dev master as origin and techhackwarrior as 
+upstream
+/apps/TECHHACK contains git cloned with techhack account, 
+
 config.assets field in the environments configuration files option allows you to 
 organize all your assets inclusion in a single place.
 
@@ -21,3 +28,13 @@ to allow or not etc... info
 
 without .bowerrc its bower installs in public/libs, but after reading .bowerrc 
 it places accordingly
+
+facebook login was giving error that:
+Given URL is not allowed by the Application configuration.: One or more of the given 
+URLs is not allowed by the App's settings. It must match the Website URL or Canvas URL,
+ or the domain must be a subdomain of one of the App's domains.
+
+problem was that in advanced tab, it was taking wrong url as localhost:8080 but app
+was running on localhost:3000 :)
+
+

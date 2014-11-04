@@ -7,6 +7,7 @@ var _ = require('lodash');
 
 /**
  * Extend user's controller
+ * load all of the user authentication, authorization, password, profile controllers
  */
 module.exports = _.extend(
         // return back the array of functions from users/ dir

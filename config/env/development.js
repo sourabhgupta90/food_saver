@@ -1,14 +1,17 @@
 'use strict';
 
+// put info for development env here
+
 module.exports = {
 	db: 'mongodb://localhost/mean-dev',
 	app: {
 		title: 'MEAN.JS - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '670139643102019',
+		clientSecret: process.env.FACEBOOK_SECRET || '17c08b072ca0f6114dd9085e3d02bc1d',
 		callbackURL: '/auth/facebook/callback'
+                // tried 'http://www.mycoolwebsite.com/auth/facebook/callback'
 	},
 	twitter: {
 		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
