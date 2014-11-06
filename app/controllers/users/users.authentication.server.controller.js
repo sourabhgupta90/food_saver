@@ -82,7 +82,7 @@ exports.signout = function(req, res) {
  * OAuth callback
  */
 exports.oauthCallback = function(strategy) {
-    console.log("facebook callback");
+    //console.log("facebook callback");
 	return function(req, res, next) {
 		passport.authenticate(strategy, function(err, user, redirectURL) {
 			if (err || !user) {
