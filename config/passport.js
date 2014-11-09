@@ -1,12 +1,13 @@
 'use strict';
 
 var passport = require('passport'),
-	User = require('mongoose').model('User'),
+	User = require('mongoose').model('User'), //using User model
 	path = require('path'),
 	config = require('./config');
 
 module.exports = function() {
 	// Serialize sessions
+        // required for persistent login sessions
 	passport.serializeUser(function(user, done) {
 		done(null, user.id);
 	});

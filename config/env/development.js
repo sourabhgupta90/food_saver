@@ -1,23 +1,26 @@
 'use strict';
 
+// put info for development env here
+
 module.exports = {
 	db: 'mongodb://localhost/mean-dev',
 	app: {
 		title: 'MEAN.JS - Development Environment'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '670139643102019',
+		clientSecret: process.env.FACEBOOK_SECRET || '17c08b072ca0f6114dd9085e3d02bc1d',
 		callbackURL: '/auth/facebook/callback'
+                // tried 'http://www.mycoolwebsite.com/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		clientID: process.env.TWITTER_KEY || '28HxpqMts8R2KhnDvSAPGVoXx',
+		clientSecret: process.env.TWITTER_SECRET || 'm7OfK3fRgSnWAc2E6dWUfhqZTNDG75HrXG2peVV23KrDCUZp7K',
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || '399258940162-e16e4056jequ1con3lfd0k54gsqhb98p.apps.googleusercontent.com',
+		clientSecret: process.env.GOOGLE_SECRET || 'rIKQEkUAszoD49FtqAoTVosm',
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {

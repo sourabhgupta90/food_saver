@@ -88,7 +88,7 @@ module.exports = function(db) {
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
-		secret: config.sessionSecret,
+		secret: config.sessionSecret, // env/all.js contains sessionSecret
 		store: new mongoStore({
 			db: db.connection.db,  // development.js/production.js/test.js has db field which gets in config.js
                         // i think db.connection.db value is not present, don't know how it will work
@@ -98,9 +98,9 @@ module.exports = function(db) {
 
 	// use passport session
 	app.use(passport.initialize());
-	app.use(passport.session());
+	app.use(passport.session()); // persistent login sessions
 
-	// connect flash for flash messages
+	// // use connect-flash for flash messages stored in session
 	app.use(flash());
 
 	// Use helmet to secure Express headers

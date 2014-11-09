@@ -24,7 +24,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		// Remove a user social account
 		$scope.removeUserSocialAccount = function(provider) {
 			$scope.success = $scope.error = null;
-
+                        // /users/accounts is on server side
 			$http.delete('/users/accounts', {
 				params: {
 					provider: provider
@@ -58,7 +58,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		// Change user password
 		$scope.changeUserPassword = function() {
 			$scope.success = $scope.error = null;
-
+                        // /users/password is on server side, so put a post request    
 			$http.post('/users/password', $scope.passwordDetails).success(function(response) {
 				// If successful show success message and clear form
 				$scope.success = true;

@@ -12,7 +12,7 @@ var passport = require('passport'),
 module.exports = function() {
 	// Use facebook strategy
 	passport.use(new FacebookStrategy({
-			clientID: config.facebook.clientID,
+			clientID: config.facebook.clientID, // got from env/development.js or production.js etc
 			clientSecret: config.facebook.clientSecret,
 			callbackURL: config.facebook.callbackURL,
 			passReqToCallback: true
