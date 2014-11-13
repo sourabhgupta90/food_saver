@@ -10,103 +10,102 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Article = mongoose.model('Article'),
+	Food = mongoose.model('Food'),
 	_ = require('lodash');
 
 /**
- * Create a article
+ * Create a food entry
  */
 exports.create = function(req, res) {
-	var article = new Article(req.body);
-	article.user = req.user;
+	var food = new Food(req.body);
+	food.user = req.user;
 
-	article.save(function(err) {
+	food.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(food);
 		}
 	}); 
 };
 
 /**
- * Show the current article
+ * Show the current food
  */
 exports.read = function(req, res) {
-	// because of articleByID middleware req.article contains intended areticle
-	res.json(req.article); 
+	res.json(req.food);
 };
 
 /**
- * Update a article
+ * Update a food
  */
 exports.update = function(req, res) {
-	var article = req.article;
+	var food = req.food;
 
-	article = _.extend(article, req.body);
+	food = _.extend(food, req.body);
 
-	article.save(function(err) {
+	food.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(food);
 		}
 	});
 };
 
 /**
- * Delete an article
+ * Delete a food
  */
 exports.delete = function(req, res) {
-	var article = req.article;
+	var food = req.food;
 
-	article.remove(function(err) {
+	food.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(article);
+			res.json(food);
 		}
 	});
 };
 
 /**
- * List of Articles
+ * List of Food
  */
 exports.list = function(req, res) {
-	Article.find().sort('-created').populate('user', 'displayName').exec(function(err, articles) {
+	Food.find().sort('-created').populate('user', 'displayName').exec(function(err, food) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(articles);
+			res.json(food);
 		}
 	});
 };
 
 /**
- * Article middleware
+ * Food middleware
  */
-exports.articleByID = function(req, res, next, id) {
-	Article.findById(id).populate('user', 'displayName').exec(function(err, article) {
+exports.foodByID = function(req, res, next, id) {
+	Food.findById(id).populate('user', 'displayName').exec(function(err, food) {
 		if (err) return next(err); // we are calling next with error code
-		if (!article) return next(new Error('Failed to load article ' + id));
-		req.article = article; // assign req.article to article found by id
-		next(); // notice the next, as we know it won't be last function, user needs to do something after getting articleId
+		if (!food) return next(new Error('Failed to load food ' + id));
+		req.food = food;
+		next(); // notice the next, as we know it won't be last function, user needs to do something after getting foodId
 	});
 };
 
 /**
- * Article authorization middleware
+ * Food authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.article.user.id !== req.user.id) {
+	if (req.food.user.id !== req.user.id) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});

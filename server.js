@@ -22,7 +22,13 @@ var db = mongoose.connect(config.db, function(err) {
 		console.log(chalk.red(err));
 	}
 });
-
+/*
+ *  we could use 
+ *  db.on('error', console.error);
+    db.once('open', function() {
+        // Create your schemas and models here.
+    });
+ */
 // Init the express application
 var app = require('./config/express')(db);
 
