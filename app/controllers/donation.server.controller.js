@@ -10,102 +10,102 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Food = mongoose.model('Food'),
+	Donation = mongoose.model('Donation'),
 	_ = require('lodash');
 
 /**
- * Create a food entry
+ * Create a donation entry
  */
 exports.create = function(req, res) {
-	var food = new Food(req.body);
-	food.user = req.user;
+	var donation = new Donation(req.body);
+	donation.user = req.user;
 
-	food.save(function(err) {
+	donation.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(food);
+			res.json(donation);
 		}
 	}); 
 };
 
 /**
- * Show the current food
+ * Show the current donation
  */
 exports.read = function(req, res) {
-	res.json(req.food);
+	res.json(req.donation);
 };
 
 /**
- * Update a food
+ * Update a donation
  */
 exports.update = function(req, res) {
-	var food = req.food;
+	var donation = req.donation;
 
-	food = _.extend(food, req.body);
+	donation = _.extend(donation, req.body);
 
-	food.save(function(err) {
+	donation.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(food);
+			res.json(donation);
 		}
 	});
 };
 
 /**
- * Delete a food
+ * Delete a donation
  */
 exports.delete = function(req, res) {
-	var food = req.food;
+	var donation = req.donation;
 
-	food.remove(function(err) {
+	donation.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(food);
+			res.json(donation);
 		}
 	});
 };
 
 /**
- * List of Food
+ * List of Donation
  */
 exports.list = function(req, res) {
-	Food.find().sort('-created').populate('user', 'displayName').exec(function(err, food) {
+	Donation.find().sort('-created').populate('user', 'displayName').exec(function(err, donation) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(food);
+			res.json(donation);
 		}
 	});
 };
 
 /**
- * Food middleware
+ * Donation middleware
  */
-exports.foodByID = function(req, res, next, id) {
-	Food.findById(id).populate('user', 'displayName').exec(function(err, food) {
+exports.donationByID = function(req, res, next, id) {
+	Donation.findById(id).populate('user', 'displayName').exec(function(err, donation) {
 		if (err) return next(err); // we are calling next with error code
-		if (!food) return next(new Error('Failed to load food ' + id));
-		req.food = food;
-		next(); // notice the next, as we know it won't be last function, user needs to do something after getting foodId
+		if (!donation) return next(new Error('Failed to load donation ' + id));
+		req.donation = donation;
+		next(); // notice the next, as we know it won't be last function, user needs to do something after getting donationId
 	});
 };
 
 /**
- * Food authorization middleware
+ * Donation authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.food.user.id !== req.user.id) {
+	if (req.donation.user.id !== req.user.id) {
 		return res.status(403).send({
 			message: 'User is not authorized'
 		});

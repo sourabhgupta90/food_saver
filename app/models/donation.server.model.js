@@ -30,10 +30,10 @@
 	};
 
 	/**
-	 * Food Schema
+	 * Donation Schema
 	 */
 
-	var FoodSchema = new Schema({
+	var DonationSchema = new Schema({
 	    
 		user: {
 			type: Schema.ObjectId,
@@ -43,7 +43,7 @@
 			type: String,
 			default: 'V',
 			//trim: true,
-			required: 'Please choose Veg/Non-Veg food'
+			required: 'Please choose Veg/Non-Veg donation'
 		},
         refrigeration: { // needs refrigeration Y/N
 			type: String,
@@ -53,7 +53,7 @@
         bestBefore: { // create check to be > current date
 			type: Date,
 			default: Date.now, // different from Date.now()
-            required: 'Please choose expected expiry date for food',   
+            required: 'Please choose expected expiry date for donation',   
             validate: [validateBestBefore, 'Please, best before date should be greater than current time']
         },
 	    desc: {
@@ -78,4 +78,4 @@
 		}
 	});
 
-	mongoose.model('Food', FoodSchema);
+	mongoose.model('Donation', DonationSchema);
