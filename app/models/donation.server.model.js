@@ -23,6 +23,15 @@
 	        else return true;
 	};
 
+	var validate_avail_from_date = function( avail_from_date ) {
+		if( this.avail_from_date < Date.now ) return false;
+	        else return true;
+	};
+
+	var validate_avail_to_date = function( avail_to_date ) {
+		if( this.avail_to_date < Date.now ) return false;
+	        else return true;
+	};
 
 	var validateDurationAA = function( duration ) {
 		if( this.bestBefore - Date.now > duration ) return true;
@@ -33,8 +42,7 @@
 	 * Donation Schema
 	 */
 
-	var DonationSchema = new Schema({
-	    
+	var DonationSchema = new Schema({	    
 		user: {
 			type: Schema.ObjectId,
 			ref: 'User'
@@ -56,6 +64,34 @@
             required: 'Please choose expected expiry date for donation',   
             validate: [validateBestBefore, 'Please, best before date should be greater than current time']
         },
+        food_amount: {
+			type: String,
+			default: '10',
+        },
+        avail_from_date: {
+			type: Date,
+			default: Date.now, // different from Date.now()
+            required: 'Please specify date for availability of food',   
+            validate: [validate_avail_from_date, 'Please, availability date should be greater than current time']        	
+        },
+        avail_to_date: {
+			type: Date,
+			default: Date.now, // different from Date.now()
+            required: 'Please specify date for availability of food',   
+            validate: [ validate_avail_to_date , 'Please, availability date should be greater than current time']        	        	
+        },
+        show_contact_num: {
+			type: String,
+			default: 'N',
+			//trim: true,
+			//required: 'Do you want to show your contact number to needy'
+        },
+        allow_chat: {
+			type: String,
+			default: 'V',
+			//trim: true,
+			//required: 'Do you want to allow chat with needy'
+        },        
 	    desc: {
 			type: String,
 			default: '',
@@ -65,12 +101,12 @@
 			type: String,
 			default: 'C',
 			trim: true            
-	    },
+	    }, 
 	    durationAA: { 
             // interval before expire-date when auto assignment can start            
 			type: Number,		
-			trim: true,
-	        validate: [validateDurationAA, 'Please, your duration is more than expiry time']
+			trim: true
+	        //validate: [validateDurationAA, 'Please, your duration is more than expiry time']
 	    },        
 	    timeStamp: {
 			type: Date,

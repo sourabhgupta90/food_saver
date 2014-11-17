@@ -1,3 +1,7 @@
+/*
+* @to-do: according to view type-checking of fields like date, amount etc
+*/
+
 'use strict';
 // here Authenticaiton and Donation are services
 angular.module('donation').controller('DonationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Donations',
@@ -10,12 +14,46 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
               { id : 'N', name: 'Non-Veg' }             
         ];
 
-        $scope.types.type = 	'V';
+        $scope.types.type ='V';
+
+		$scope.states = {};
+        $scope.states.options = [
+              { id : 'C', name: 'Cooked' },
+              { id : 'R', name: 'Raw' }             
+        ];
+
+        $scope.states.state ='C';
+
+        $scope.now = new Date();
+        $scope.bestbefore_date = new Date();
+        $scope.avail_from_date = new Date();
+        $scope.avail_to_date = new Date();
+        $scope.food_amount = '10';
+        $scope.refrigeration = 'no';
+        $scope.desc = '';
+        $scope.show_contact_num = 'Y';
+		$scope.allow_chat = 'Y';
+		$scope.auto_assign = 30;
+
+//   
 
 		$scope.create = function() {
 			var donation = new Donations({
-				title: this.title,
-				content: this.content
+				//title: this.title,
+				//content: this.content,
+				// all these type on left should be same as vars in model on server
+				// and on right should be same as ng-model in view
+				type: this.types.type,
+				state: this.states.state,
+				refrigeration: this.refrigeration,
+				bestBefore: this.bestbefore_date,
+				food_amount: this.food_amount,
+				avail_from_date: this.avail_from_date,
+				avail_to_date: this.avail_to_date,
+				show_contact_num: this.show_contact_num,
+				allow_chat: this.allow_chat,
+				durationAA: this.auto_assign,
+				desc: this.desc
 			});
             // in Donation service resource class provides these save, update, remove etc methods       
 
@@ -23,8 +61,16 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
 				//  after saving donation, redirect to donation/donationId page
 				$location.path('donation/' + response._id);
 
-				$scope.title = '';
-				$scope.content = '';
+				//$scope.title = '';
+				//$scope.content = '';
+				$scope.types.type ='V';
+				$scope.states.state ='C';
+				$scope.refrigeration = 'no';
+        		$scope.desc = '';
+        		$scope.show_contact_num = 'Y';
+				$scope.allow_chat = 'Y';
+				$scope.auto_assign = 30;
+
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -65,5 +111,6 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
 				donationId: $stateParams.donationId // get the donationId
 			});
 		};
+
 	}
 ]);
