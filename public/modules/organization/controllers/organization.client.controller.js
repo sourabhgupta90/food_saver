@@ -1,18 +1,18 @@
 'use strict';
 // here Authenticaiton and Articles are services
 angular.module('organization').controller('OrganizationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Organization',
-	function($scope, $stateParams, $location, Authentication, Articles) {
+	function($scope, $stateParams, $location, Authentication, Organization) {
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
-			var article = new Articles({
+			var organization = new Organization({
 				title: this.title,
 				content: this.content
 			});
                         // don't know meaning of $save funciton where does this
                         // $funciton come from
-			article.$save(function(response) {
-				$location.path('articles/' + response._id);
+			organization.$save(function(response) {
+				$location.path('organization/' + response._id);
 
 				$scope.title = '';
 				$scope.content = '';
@@ -21,39 +21,39 @@ angular.module('organization').controller('OrganizationController', ['$scope', '
 			});
 		};
 
-		$scope.remove = function(article) {
-			if (article) {
-				article.$remove();
+		$scope.remove = function(organization) {
+			if (organization) {
+				organization.$remove();
 
-				for (var i in $scope.articles) {
-					if ($scope.articles[i] === article) {
-						$scope.articles.splice(i, 1);
+				for (var i in $scope.organization) {
+					if ($scope.organization[i] === organization) {
+						$scope.organization.splice(i, 1);
 					}
 				}
 			} else {
-				$scope.article.$remove(function() {
-					$location.path('articles');
+				$scope.organization.$remove(function() {
+					$location.path('organization');
 				});
 			}
 		};
 
 		$scope.update = function() {
-			var article = $scope.article;
+			var organization = $scope.organization;
 
-			article.$update(function() {
-				$location.path('articles/' + article._id);
+			organization.$update(function() {
+				$location.path('organization/' + organization._id);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
 		$scope.find = function() {
-			$scope.articles = Articles.query();
+			$scope.organization = Organization.query();
 		};
 
 		$scope.findOne = function() {
-			$scope.article = Articles.get({
-				articleId: $stateParams.articleId
+			$scope.organization = Organization.get({
+				organizationId: $stateParams.organizationId
 			});
 		};
 	}
