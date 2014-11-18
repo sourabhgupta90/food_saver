@@ -10,8 +10,8 @@
 				by
 				<span data-ng-bind="donation.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="donation.title"></h4>
-			<p class="list-group-item-text" data-ng-bind="donation.content"></p>
+			<!--h4 class="list-group-item-heading" data-ng-bind="donation.title"></h4-->
+			<p class="list-group-item-text" data-ng-bind="donation.desc"></p>
 		</a>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="donations.$resolved && !donations.length">

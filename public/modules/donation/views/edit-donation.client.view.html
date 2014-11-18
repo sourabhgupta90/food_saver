@@ -1,0 +1,97 @@
+<!-- 
+notice ng-model="donation.type" here should be present in server model, otherwise it shows empty value
+if server model has mtype instead of type, use ng-model="donation.mtype" irrespective of what name have been used with $scope
+-->
+<section data-ng-controller="DonationController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1>Edit Donation</h1>
+	</div>
+	<div class="col-md-12">
+		<form name="donationForm" class="form-horizontal" data-ng-submit="update(donationForm.$valid)" novalidate>
+			<fieldset>
+
+				<div class="form-group">
+					select food type
+					<select ng-model="donation.type" ng-options="obj.id as obj.name for obj in types.options" id="food_type">				
+					</select>
+					<!--div>{{types.type}}</div -->
+				</div>
+				<div class="form-group">
+					select food state
+					<select ng-model="donation.state" ng-options="obj.id as obj.name for obj in states.options" id="food_state">				
+					</select>
+					<!--div>{{states.state}}</div-->
+				</div>			
+
+				<div class="form-group" ng-class="{ 'has-error' : submitted && donationForm.bestbefore_date.$invalid}">								Best Before
+				   	<input type="date" id="bestbefore" name="input" ng-model="donation.bestbefore_date" placeholder="yyyy-MM-dd" min="1970-01-01" max="2070-12-31" required />				   				
+					<div ng-show="submitted && donationForm.bestbefore_date.$invalid" class="help-block">
+						<p ng-show="donationForm.bestbefore_date.$error.required" class="text-danger">Expiry date is required</p>
+					</div>					
+					<!--div>Timestamp: {{now}}</div-->	
+				</div>				
+
+				<div class="form-group" ng-class="{ 'has-error' : submitted && donationForm.food_amount.$invalid}">								
+					<label for="food_amount">Food Amount</label>
+					<div class="controls">
+						<input name="food_amount" type="text" data-ng-model="donation.food_amount" id="food_amount" class="form-control" placeholder="Please enter food amount" required>
+					</div>
+					<div ng-show="submitted && donationForm.food_amount.$invalid" class="help-block">
+						<p ng-show="donationForm.title.$error.required" class="text-danger">Food amount is required</p>
+					</div>					
+				</div>		
+
+				<div>
+					Needs refrigeration:
+ 					<input type="checkbox" ng-model="donation.refrigeration" ng-true-value="yes" ng-false-value="no" id="need_ref">
+ 					<!--div>{{refrigeration}}</div-->
+ 				</div>	 	
+
+				<div class="form-group" ng-class="{ 'has-error' : submitted && donationForm.avail_from_date.$invalid && donationForm.avail_to_date.$invalid }">		
+					Available from
+				   <input type="date" id="avail_from" name="input" ng-model="donation.avail_from_date" placeholder="yyyy-MM-dd" min="1970-01-01" max="2070-12-31" required />				   
+				   to
+				   <input type="date" id="avail_to" name="input" ng-model="donation.avail_to_date" placeholder="yyyy-MM-dd" min="1970-01-01" max="2070-12-31" required />	
+					<div ng-show="submitted && donationForm.avail_from_date.$invalid && donationForm.avail_to_date.$invalid " class="help-block">
+						<p ng-show="donationForm.avail_from_date.$error.required" class="text-danger">Available from and to date are required</p>
+					</div>						   			   				   
+				</div>	
+
+				<div class="form-group">
+					<label class="control-label" for="desc">Description</label>
+					<div class="controls">
+						<textarea name="desc" data-ng-model="donation.desc" id="desc" class="form-control" cols="30" rows="10" placeholder="Please enter some description"></textarea>
+					</div>
+					<!--div>{{desc}}</div-->
+				</div>
+
+				<div>
+					Show my contact number:
+ 					<input type="checkbox" ng-model="donation.show_contact_num" ng-true-value="Y" ng-false-value="N" ng-checked="true" id="show_cont_num">
+ 					<!--div>{{show_contact_num}}</div-->
+ 				</div>	 
+				<div>
+					Allow chat with me:
+ 					<input type="checkbox" ng-model="donation.allow_chat" ng-true-value="Y" ng-false-value="N" ng-checked="true" id="allow_chat">
+ 					<!--div>{{allow_chat}}</div-->
+ 				</div>
+
+				<div class="form-group">
+					<label for="durationAA">Duration before expiry auto assignment should start</label>
+					<div>
+						<input name="durationAA" type="text" data-ng-model="donation.durationAA" id="durationAA" class="form-control" placeholder="Please provide duration before expiry auto assignment should start" required>
+					</div>
+ 					<!--div>{{durationAA}}</div-->					
+				</div>
+
+				<div class="form-group">
+					<input type="submit" value="Update" class="btn btn-default">
+				</div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>
+

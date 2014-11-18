@@ -33,7 +33,7 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
         $scope.desc = '';
         $scope.show_contact_num = 'Y';
 		$scope.allow_chat = 'Y';
-		$scope.auto_assign = 30;
+		$scope.durationAA = 30;
 
 //   
 
@@ -52,7 +52,7 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
 				avail_to_date: this.avail_to_date,
 				show_contact_num: this.show_contact_num,
 				allow_chat: this.allow_chat,
-				durationAA: this.auto_assign,
+				durationAA: this.durationAA,
 				desc: this.desc
 			});
             // in Donation service resource class provides these save, update, remove etc methods       
@@ -69,7 +69,7 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
         		$scope.desc = '';
         		$scope.show_contact_num = 'Y';
 				$scope.allow_chat = 'Y';
-				$scope.auto_assign = 30;
+				$scope.durationAA = 30;
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

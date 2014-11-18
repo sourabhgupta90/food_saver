@@ -16,6 +16,10 @@ angular.module('donation').config(['$stateProvider',
 		state('viewDonation', {
 			url: '/donation/:donationId',
 			templateUrl: 'modules/donation/views/view-donation.client.view.html'
-		});		
+		}).
+		state('editDonation', {
+			url: '/donation/:donationId/edit',
+			templateUrl: 'modules/donation/views/edit-donation.client.view.html'
+		});				
 	}
 ]);
