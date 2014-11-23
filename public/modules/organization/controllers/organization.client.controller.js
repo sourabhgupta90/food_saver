@@ -1,60 +1,28 @@
 'use strict';
 // here Authenticaiton and Articles are services
-angular.module('organization').controller('OrganizationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Organization',
-	function($scope, $stateParams, $location, Authentication, Organization) {
-		$scope.authentication = Authentication;
+angular.module('organization').controller('OrganizationController', ['$scope', '$stateParams', '$location', 'Authentication', 'Organization', 'createOrganization',
+            function($scope, $stateParams, $location, Authentication, Organization, createOrganization) {
+                $scope.authentication = Authentication;
 
-		$scope.create = function() {
-			var organization = new Organization({
-				title: this.title,
-				content: this.content
-			});
-                        // don't know meaning of $save funciton where does this
-                        // $funciton come from
-			organization.$save(function(response) {
-				$location.path('organization/' + response._id);
+                $scope.create = function() {
+                    var organization = new Organization({
+                        mqf: this.mqf,
+                        mls: this.mls
+                    });
 
-				$scope.title = '';
-				$scope.content = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+                    var cards = createOrganization.query(function() {
+                            console.log(cards);
+                        });
 
-		$scope.remove = function(organization) {
-			if (organization) {
-				organization.$remove();
+                        // organization.$save(function(response) {
+                        // 	$location.path('organization/' + response._id);
 
-				for (var i in $scope.organization) {
-					if ($scope.organization[i] === organization) {
-						$scope.organization.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.organization.$remove(function() {
-					$location.path('organization');
-				});
-			}
-		};
+                        // 	$scope.title = '';
+                        // 	$scope.content = '';
+                        // }, function(errorResponse) {
+                        // 	$scope.error = errorResponse.data.message;
+                        // });
+                    };
 
-		$scope.update = function() {
-			var organization = $scope.organization;
-
-			organization.$update(function() {
-				$location.path('organization/' + organization._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		$scope.find = function() {
-			$scope.organization = Organization.query();
-		};
-
-		$scope.findOne = function() {
-			$scope.organization = Organization.get({
-				organizationId: $stateParams.organizationId
-			});
-		};
-	}
-]);
+                }
+            ]);

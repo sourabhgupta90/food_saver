@@ -38,10 +38,11 @@ exports.list = function(req, res) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-	if (req.article.user.id !== req.user.id) {
-		return res.status(403).send({
-			message: 'User is not authorized'
-		});
-	}
 	next(); // call the next function
+};
+
+exports.update = function(req, res) {
+	console.log(res);
+	console.log('on update function');	
+	return res.json([{'working':'working'}]);
 };

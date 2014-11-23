@@ -12,4 +12,9 @@ module.exports = function(app) {
 	app.route('/organization')
 		.get(organization.list)
 		.post(users.requiresLogin, organization.create);
+
+	app.route('/organization/mqf/:mqf') 
+		.get(users.requiresLogin, organization.hasAuthorization, organization.update)
+		.post(users.requiresLogin, organization.hasAuthorization, organization.update);
+		
 };
