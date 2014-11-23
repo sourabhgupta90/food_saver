@@ -10,6 +10,7 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
+	assign = require('./assign.server.controller'),
 	Donation = mongoose.model('Donation'),
 	_ = require('lodash');
 
@@ -26,6 +27,8 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			// create document in assign collection
+			assign.create_donation( req.user.id, donation.id );
 			res.json(donation);
 		}
 	}); 
