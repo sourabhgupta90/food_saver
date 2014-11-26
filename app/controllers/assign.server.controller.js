@@ -24,8 +24,7 @@ exports.create_donation = function ( dSeqNo, fSeqNo ){
 	assign.needy = [];
 
 	assign.save(function(err) {
-		if (err) {
-			var x = err;
+		if (err) {			
 			console.log('error in assignment');
 			console.log( err );
 			//send some message here
@@ -34,8 +33,7 @@ exports.create_donation = function ( dSeqNo, fSeqNo ){
 				message: errorHandler.getErrorMessage(err)
 			});
 			*/
-		} else {
-			var x = true;
+		} else {			
 			console.log('assignment done');
 		// don't return anything, maybe send notification that donation created
 		//	res.json(article);

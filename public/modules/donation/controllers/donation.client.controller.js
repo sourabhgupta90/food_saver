@@ -1,5 +1,6 @@
 /*
 * @to-do: according to view type-checking of fields like date, amount etc
+keep bestbefore_date tomorrow 00hrs
 */
 
 'use strict';
@@ -25,7 +26,7 @@ angular.module('donation').controller('DonationController', ['$scope', '$statePa
         $scope.states.state ='C';
 
         $scope.now = new Date();
-        $scope.bestbefore_date = new Date();
+        $scope.bestbefore_date = new Date();        
         $scope.avail_from_date = new Date();
         $scope.avail_to_date = new Date();
         $scope.food_amount = '10';
