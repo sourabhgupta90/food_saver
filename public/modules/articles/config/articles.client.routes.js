@@ -21,5 +21,11 @@ angular.module('articles').config(['$stateProvider',
 			url: '/articles/:articleId/edit',
 			templateUrl: 'modules/articles/views/edit-article.client.view.html'
 		});
+/*
+we could also below to give default view to users
+run(function($state) {
+  $state.go('listArticles'); //make a transition to listArticles state when app starts
+});
+*/		
 	}
 ]);

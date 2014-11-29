@@ -18,6 +18,8 @@ module.exports = function(app) {
 		.put(users.requiresLogin, articles.hasAuthorization, articles.update) //  articles.hasAuthorization has next()
 		.delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
 
-	// Finish by binding the article middleware
+	// Finish by binding the article middleware, pass articleId to articleByID method in controller
+	//due to this middleware read, update, authorization, delete are working on requested articleId
 	app.param('articleId', articles.articleByID); // articles.articleByID has next()
+
 };
