@@ -35,7 +35,8 @@ exports.create = function(req, res) {
  * Show the current article
  */
 exports.read = function(req, res) {
-	res.json(req.article);
+	// because of articleByID middleware req.article contains intended areticle
+	res.json(req.article); 
 };
 
 /**
@@ -96,7 +97,7 @@ exports.articleByID = function(req, res, next, id) {
 	Article.findById(id).populate('user', 'displayName').exec(function(err, article) {
 		if (err) return next(err); // we are calling next with error code
 		if (!article) return next(new Error('Failed to load article ' + id));
-		req.article = article;
+		req.article = article; // assign req.article to article found by id
 		next(); // notice the next, as we know it won't be last function, user needs to do something after getting articleId
 	});
 };
