@@ -3,40 +3,23 @@
         <h1>Organization</h1>
     </div>
 
-        <div class="list-group" ng-show="authentication">
-            <div class="form-group">
-                <label for="inputEmail3" data-ng-model="content" id="content" class="col-sm-2 control-label">Min quantity of food</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" for="mqf" data-ng-model="mqf" id="mqf" placeholder="Min quantity of food">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Having min life span</label>
-                <div class="col-sm-10">
-                    <input type="text" for="mls" data-ng-model="mls" id="mls" class="form-control" placeholder="Having min life span">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button ng-click='create()' class="btn btn-default">Update</button>
-                </div>
+    <div class="list-group" ng-show="authentication">
+        <div class="form-group">
+            <label for="inputEmail3" data-ng-model="content" id="content" class="col-sm-2 control-label">Min quantity of food</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" for="mqf" data-ng-model="user.minQuatityFood" id="minQuatityFood" placeholder="Min quantity of food">
             </div>
         </div>
-    
-
-    <div class="list-group">
-        <a data-ng-repeat="article in articles" data-ng-href="#!/articles/{{article._id}}" class="list-group-item">
-            <small class="list-group-item-text">
-            Posted on
-            <span data-ng-bind="article.created | date:'mediumDate'"></span>
-            by
-            <span data-ng-bind="article.user.displayName"></span>
-            </small>
-            <h4 class="list-group-item-heading" data-ng-bind="article.title"></h4>
-            <p class="list-group-item-text" data-ng-bind="article.content"></p>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-if="articles.$resolved && !articles.length">
-        No articles yet, why don't you <a href="/#!/organization/create">create one</a>?
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Having min life span</label>
+            <div class="col-sm-10">
+                <input type="text" for="mls" data-ng-model="user.minLifeSpan" id="minLifeSpan" class="form-control" placeholder="Having min life span">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button ng-click='create()' class="btn btn-default">Update</button>
+            </div>
+        </div>
     </div>
 </section>

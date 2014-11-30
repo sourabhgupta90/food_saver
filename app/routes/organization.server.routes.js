@@ -14,7 +14,5 @@ module.exports = function(app) {
 		.post(users.requiresLogin, organization.create);
 
 	app.route('/organization/mqf/:mqf') 
-		.get(users.requiresLogin, organization.hasAuthorization, organization.update)
 		.post(users.requiresLogin, organization.hasAuthorization, organization.update);
-		
 };
