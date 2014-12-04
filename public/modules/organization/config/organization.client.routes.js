@@ -7,7 +7,7 @@ angular.module('organization').config(['$stateProvider',
 		$stateProvider.
 		state('listOrganization', {
 			url: '/organization',
-			templateUrl: 'modules/organization/views/list-articles.client.view.html'
+			templateUrl: 'modules/organization/views/organization.client.view.html'
 		});
 	}
 ]);
